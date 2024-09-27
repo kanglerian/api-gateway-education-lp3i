@@ -2,11 +2,9 @@ require('dotenv').config();
 const cookieParser = require('cookie-parser');
 const session = require('express-session');
 const bodyParser = require('body-parser');
-const { Server } = require('socket.io');
 const express = require('express');
 const logger = require('morgan');
 const cors = require('cors');
-const http = require('http');
 
 const indexRouter = require('./routes/index');
 
@@ -29,7 +27,6 @@ const gayabelajarTestsRouter = require('./routes/gayabelajar/tests');
 const gayabelajarUsersRouter = require('./routes/gayabelajar/users');
 
 const app = express();
-const server = http.createServer(app);
 
 const allowedOrigins = [
   'https://test-gaya-belajar.politekniklp3i-tasikmalaya.ac.id',
@@ -63,13 +60,6 @@ const corsOptions = {
   },
   credentials: true,
 };
-
-const io = new Server(server, {
-  cors: {
-    origin: allowedOrigins,
-    methods: ["GET", "POST"]
-  }
-});
 
 app.use(logger('dev'));
 app.use(cors(corsOptions));
@@ -107,4 +97,4 @@ app.use('/gayabelajar/hasils', gayabelajarHasilsRouter);
 app.use('/gayabelajar/tests', gayabelajarTestsRouter);
 app.use('/gayabelajar/users', gayabelajarUsersRouter);
 
-module.exports = { app, server };
+module.exports = app;

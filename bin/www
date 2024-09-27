@@ -4,8 +4,9 @@
  * Module dependencies.
  */
 
-var { app, server } = require('../app');
-var debug = require('debug')('api-gateway:server');
+var app = require('../app');
+var debug = require('debug')('database-express-lp3i:server');
+var http = require('http');
 
 /**
  * Get port from environment and store in Express.
@@ -18,6 +19,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
+var server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
