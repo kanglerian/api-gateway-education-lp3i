@@ -8,8 +8,9 @@ const api = apiAdapter(`${SERVICE_KECERDASAN}/types`);
 
 router.get('/', async (req, res) => {
     try {
-        const response = await api.get('/');
-        return res.send(response.data);
+        // const response = await api.get('/');
+        // return res.send(response.data);
+        return res.send('OK');
     } catch (error) {
         if (error.code === 'ECONNREFUSED') {
             return res.status(500).json({ status: 'error', message: 'service unavailable' });
