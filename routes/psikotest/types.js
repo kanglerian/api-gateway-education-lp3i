@@ -4,13 +4,12 @@ const express = require('express');
 const router = express.Router();
 const apiAdapter = require('../apiAdapter');
 
-const api = apiAdapter(`${SERVICE_KECERDASAN}/types`);
+const api = apiAdapter(`http://103.163.111.46:8001/types`);
 
 router.get('/', async (req, res) => {
     try {
-        // const response = await api.get('/');
-        // return res.send(response.data);
-        return res.send('OK');
+        const response = await api.get('/');
+        return res.send(response.data);
     } catch (error) {
         if (error.code === 'ECONNREFUSED') {
             return res.status(500).json({ status: 'error', message: 'service unavailable' });
