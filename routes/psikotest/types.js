@@ -4,11 +4,11 @@ const express = require('express');
 const router = express.Router();
 const apiAdapter = require('../apiAdapter');
 
-const api = apiAdapter(`http://103.163.111.46:8001`);
+const api = apiAdapter(`http://103.163.111.46:8001/types`);
 
 router.get('/', async (req, res) => {
     try {
-        const response = await api.get('/types');
+        const response = await api.get('/');
         return res.send(response.data);
     } catch (error) {
         if (error.code === 'ECONNREFUSED') {
